@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+const VerifyUser = (req, res, next) => {
+  const authHeader = req.headers["x-access-token"];
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  if (authHeader == null ) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-
-  const token = authHeader.split(" ")[1];
+ 
+  const token = authHeader
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -17,3 +17,5 @@ module.exports = (req, res, next) => {
     res.status(401).json({ message: "Invalid token" });
   }
 };
+
+module.exports = { VerifyUser };
