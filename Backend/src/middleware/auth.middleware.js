@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-const VerifyUser = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const authHeader = req.headers["x-access-token"];
-
+  
   if (authHeader == null ) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -14,8 +14,11 @@ const VerifyUser = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: "Token expired, please login again" });
+    }
     res.status(401).json({ message: "Invalid token" });
   }
 };
 
-module.exports = { VerifyUser };
+module.exports = { verifyToken };

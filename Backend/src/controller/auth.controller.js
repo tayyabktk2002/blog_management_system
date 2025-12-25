@@ -1,22 +1,32 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
-      });r
+      });
     }
+
+  
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(409).json({
         success: false,
         message: "User already exists with this email",
+      });
+    }
+
+      if(password !== confirmPassword){
+      return res.status(400).json({
+        success: false,
+        message: "Password and confirm password do not match",
       });
     }
 
@@ -36,12 +46,7 @@ const register = async (req, res) => {
   }
   return res.status(201).json({
    success: true,
-   message: "User registered successfully",
-   data: {
-     id: user._id,
-     name: user.name,
-     email: user.email,
-   },
+   message: "Account registered successfully, now login to continue",
  });
 
   } catch (error) {
@@ -79,6 +84,9 @@ const login = async (req, res) => {
         message: "Invalid credentials",
       });
     }
+    const token = jwt.sign({ id: user._id, email }, process.env.JWT_SECRET, { expiresIn: "7d" }); 
+    await User.updateOne({ email: email }, { token: token });
+    user.token = token;
 
     return res.status(200).json({
       success: true,
@@ -87,6 +95,7 @@ const login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        token: user.token,
       },
     });
   } catch (error) {
