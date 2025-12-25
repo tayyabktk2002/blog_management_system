@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "a992d2af-5724-4e30-bdff-66c5f2e8205b",
+		"name": "Blog Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26152871",
+		"_collection_link": "https://newhunt.postman.co/workspace/Workspace~26caeeff-60c9-4f63-81e1-cba78f8cec1b/collection/26152871-a992d2af-5724-4e30-bdff-66c5f2e8205b?action=share&source=collection_link&creator=26152871"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang-code",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Tayyab Khattak\",\r\n    \"email\" : \"tayyabktk2002@gmail.com\",\r\n    \"password\" : \"12341234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "lang-code",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"tayyabktk2002@gmail.com\",\r\n    \"password\" : \"12341234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY0ODU1MzQsImV4cCI6MTc2NzA5MDMzNH0.1dW72U9mXFWhs82l516vDmamTVp4pexAeUy6no2NA68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Testing\",\r\n    \"content\":\"Testing\",\r\n    \"author_id\":\"694a4e98f16c611f13e517d2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/post/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY0ODU1MzQsImV4cCI6MTc2NzA5MDMzNH0.1dW72U9mXFWhs82l516vDmamTVp4pexAeUy6no2NA68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Testing\",\r\n    \"content\":\"Testing\",\r\n    \"author_id\":\"694a4e98f16c611f13e517d2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/post/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"list"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY0ODU1MzQsImV4cCI6MTc2NzA5MDMzNH0.1dW72U9mXFWhs82l516vDmamTVp4pexAeUy6no2NA68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\":\"694a6ed23ad0ec349e548c24\",\r\n    \"title\":\"Testing Edit\",\r\n    \"content\":\"Testing Edit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/post/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY0ODU1MzQsImV4cCI6MTc2NzA5MDMzNH0.1dW72U9mXFWhs82l516vDmamTVp4pexAeUy6no2NA68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\":\"694a7a5dbce9ac7dc2ad4aca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/post/remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY0ODU1MzQsImV4cCI6MTc2NzA5MDMzNH0.1dW72U9mXFWhs82l516vDmamTVp4pexAeUy6no2NA68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Testing\",\r\n    \"content\":\"Testing\",\r\n    \"author_id\":\"694a4e98f16c611f13e517d2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/post/details/694b8dde6902a875485cd147",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"details",
+								"694b8dde6902a875485cd147"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

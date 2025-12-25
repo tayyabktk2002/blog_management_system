@@ -1,208 +1,375 @@
-# Blog Management Application
+#  Blog Management Application
 
-A full-stack **Blog Management Application** built as part of an interview task. The project includes a **Node.js + Express backend** and a **Next.js frontend**, following clean architecture and best practices.
+A modern, full-stack **Blog Management Application** built with **Node.js + Express** backend and **Next.js** frontend. This project demonstrates clean architecture, secure authentication, and responsive design principles.
 
----
+##  Features
 
-## 🏗️ Project Structure
+-  **User Authentication** - Secure JWT-based login/register system
+-  **Rich Text Editor** - TipTap editor for creating and editing blog posts
+-  **Responsive Design** - Mobile-first approach with Tailwind CSS
+-  **Protected Routes** - route protection
+-  **User Blog** - Personal blog management interface
+-  **Modern UI/UX** - Clean and intuitive user interface
+-  **Real-time Updates** - Dynamic content loading and updates
+
+##  Project Structure
 
 ```
-Blog-Management-App
+Blog-Management-App/
 │
-├── Backend
-│   ├── src
-│   │   ├── controllers
-│   │   ├── routes
-│   │   ├── models
-│   │   ├── middlewares
-│   │   └── config
+├── Backend/
+│   ├── src/
+│   │   ├── controller/
+│   │   │   ├── auth.controller.js
+│   │   │   └── post.controller.js
+│   │   ├── routes/
+│   │   │   ├── auth.routes.js
+│   │   │   └── post.route.js
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   │   └── auth.middleware.js
+│   │   ├── config/
 │   │   └── app.js
 │   ├── server.js
 │   ├── package.json
-│   └── .env.example
+│   ├── .env.sample
+│   └── .env
 │
-├── Frontend
-│   ├── app / pages
-│   ├── components
-│   ├── services
+├── Frontend/
+│   ├── app/
+│   │   ├── (auth)/
+│   │   ├── blog/
+│   │   ├── create-blog/
+│   │   ├── edit-blog/
+│   │   ├── user-blog/
+│   │   ├── layout.js
+│   │   └── page.js
+│   ├── components/
+│   │   ├── ActionBtn.jsx
+│   │   ├── BlogCom.jsx
+│   │   ├── ConditionalNavbar.jsx
+│   │   ├── CreateBtn.jsx
+│   │   ├── EditTiptap.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── Navber.jsx
+│   │   └── TIptipEditor.jsx
+│   ├── context/
+│   │   └── AuthContext.jsx
+│   ├── services/
+│   │   └── api.js
 │   ├── package.json
-│   └── next.config.js
+│   ├── .env.sample
+│   └── next.config.mjs
 │
 └── README.md
 ```
 
----
-
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
-
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* JWT Authentication
-* bcrypt
-* nodemon (development)
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - Database with Mongoose ODM
+- **JWT** - Authentication tokens
+- **bcrypt** - Password hashing
+- **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment variables
 
 ### Frontend
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **TipTap** - Rich text editor
+- **Axios** - HTTP client
+- **React Toastify** - Toast notifications
+- **Lucide React** - Icon library
 
-* Next.js
-* React.js
-* Tailwind CSS
-* Axios
+### Development Tools
+- **nodemon** - Backend development server
+- **ESLint** - Code linting
+- **Git** - Version control
 
-### Tools
+##  Quick Start
 
-* Git & GitHub
-* Postman
-* npm
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB (local or cloud instance)
+- npm or yarn package manager
 
----
-
-## ⚙️ Setup Instructions
-
-### 1️⃣ Clone Repository
+### 1️ Clone Repository
 
 ```bash
-git clone <your-github-repo-url>
+git clone https://github.com/tayyabktk2002/blog_management_system.git
 cd Blog-Management-App
 ```
 
----
-
-## 🔧 Backend Setup (Node.js + Express)
+### 2️ Backend Setup
 
 ```bash
 cd Backend
 npm install
 ```
 
-### Environment Variables
-
-Create a `.env` file using `.env.sample`:
+**Environment Configuration:**
+Create `.env` file from `.env.sample`:
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+MONGO_URI=mongodb://localhost:27017/blog-management
+# or use MongoDB Atlas: mongodb+srv://username:password@cluster.mongodb.net/blog-management
+JWT_SECRET=your-super-secret-jwt-key-here
 ```
 
-### Run Backend (Development)
-
+**Start Backend Server:**
 ```bash
 npm run dev
 ```
+ Backend runs on `http://localhost:5000`
 
-> Backend runs using **nodemon** on `http://localhost:5000`
-
----
-
-## 🎨 Frontend Setup (Next.js)
+### 3️ Frontend Setup
 
 ```bash
 cd Frontend
 npm install
+```
+
+**Environment Configuration:**
+Create `.env.local` file from `.env.sample`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1/
+```
+
+**Start Frontend Server:**
+```bash
 npm run dev
 ```
+ Frontend runs on `http://localhost:3000`
 
-> Frontend runs on `http://localhost:3000`
+## 📡 API Documentation
 
----
+### Base URL
+```
+http://localhost:5000/api/v1
+```
 
-## 🔌 API Documentation (Sample)
-
-### 🔐 Authentication
+###  Authentication Endpoints
 
 #### Register User
+```http
+POST /api/v1/auth/register
+Content-Type: application/json
 
-```
-POST /api/auth/register
-```
-
-**Request Body**
-
-```json
 {
   "name": "John Doe",
   "email": "john@example.com",
-  "password": "12345678"
+  "password": "password123"
 }
 ```
-
----
 
 #### Login User
+```http
+POST /api/v1/auth/login
+Content-Type: application/json
 
-```
-POST /api/auth/login
-```
-
-**Response**
-
-```json
 {
-  "token": "jwt_token_here",
-  "user": {
-    "id": "...",
-    "email": "john@example.com"
-  }
+  "email": "john@example.com",
+  "password": "password123"
 }
 ```
 
----
-
-### 📝 Blog APIs
-
-#### Get All Blogs
-
-```
-GET /api/v1/blogs
-```
-
-#### Create Blog (Protected)
-
-```
-POST /api/blogs
-Authorization:  <x-access-token>
+**Response:**
+```json
+{
+    "success": true,
+    "message": "User logged in successfully",
+    "data": {
+        "id": "694a4e98f16c611f13e517d2",
+        "name": "Tayyab Khattak",
+        "email": "tayyabktk2002@gmail.com",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NGE0ZTk4ZjE2YzYxMWYxM2U1MTdkMiIsImVtYWlsIjoidGF5eWFia3RrMjAwMkBnbWFpbC5jb20iLCJpYXQiOjE3NjY2NzAxNDUsImV4cCI6MTc2NzI3NDk0NX0.WbOXb5kkFSZBe-6FWqnFIqCF9kV736FYHkXX5vEhtiE"
+    }
+}
 ```
 
----
+###  Blog Post Endpoints
 
-## 🧪 Postman / cURL Example
+#### Get All Posts
+```http
+GET /api/v1/post/list
+```
 
+#### Get Post Details
+```http
+GET /api/v1/post/details/:id
+```
+
+#### Create Post (Protected)
+```http
+POST /api/v1/post/create
+x-access-token: <jwt_token>
+Content-Type: application/json
+
+{
+  "title": "My Blog Post",
+  "content": "<p>Rich HTML content from TipTap editor</p>",
+  "excerpt": "Brief description of the post"
+}
+```
+
+#### Update Post (Protected)
+```http
+PUT /api/v1/post/update/:id
+x-access-token: <jwt_token>
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "content": "<p>Updated content</p>"
+}
+```
+
+#### Delete Post (Protected)
+```http
+DELETE /api/v1/post/remove/:id
+x-access-token:  <jwt_token>
+```
+
+#### Get User's Posts (Protected)
+```http
+GET /api/v1/post/user-posts
+x-access-token: <jwt_token>
+```
+
+##  Testing with cURL
+
+**Register a new user:**
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
--H "Content-Type: application/json" \
--d '{"email":"john@example.com","password":"123456"}'
+curl -X POST http://localhost:5000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "password123",
+    "confirmPassword" :"same like passowrd"
+  }'
 ```
 
+**Login:**
+```bash
+curl -X POST http://localhost:5000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "password123"
+  }'
+```
+
+**Create a blog post:**
+```bash
+curl -X POST http://localhost:5000/api/v1/post/create \
+  -H "Content-Type: application/json" \
+  -H "x-access-token: YOUR_JWT_TOKEN" \
+  -d '{
+    "title": "My First Blog Post",
+    "content": "<p>This is my first blog post content.</p>"
+    author_id: "get from token"
+  }'
+```
+
+##  Architecture Overview
+
+### Backend Architecture
+- **MVC Pattern** - Separation of concerns with controllers, models, and routes
+- **Middleware Chain** - Authentication, CORS, and error handling
+- **JWT Authentication** - Stateless token-based authentication
+- **MongoDB Integration** - Mongoose ODM for database operations
+
+### Frontend Architecture
+- **App Router** - Next.js 13+ file-based routing system
+- **Context API** - Global state management for authentication
+- **Component-Based** - Reusable React components
+- **Service Layer** - Centralized API communication
+
+### Security Features
+- Password hashing with bcrypt
+- JWT token expiration
+- Protected API routes
+- Input validation and sanitization
+- CORS configuration
+
+##  Application Features
+
+### User Management
+- User registration and login
+- JWT-based authentication
+- Protected user dashboard
+
+### Blog Management
+- Create, read, update, delete blog posts
+- Rich text editing with TipTap
+- User-specific blog listings
+- Public blog viewing
+
+### UI/UX Features
+- Responsive design for all devices
+- Loading states and error handling
+- Toast notifications
+- Conditional navigation
+- Modern, clean interface
+
+##  Deployment
+
+### Backend Deployment (Render/Railway)
+1. Connect your GitHub repository
+2. Set environment variables:
+   - `MONGO_URI`
+   - `JWT_SECRET`
+   - `PORT`
+3. Deploy with automatic builds
+
+### Frontend Deployment (Vercel/Netlify)
+1. Connect your GitHub repository
+2. Set build command: `npm run build`
+3. Set environment variables:
+   - `NEXT_PUBLIC_API_URL`
+4. Deploy with automatic builds
+
+##  Available Scripts
+
+### Backend
+```bash
+npm start        # Production server
+npm run dev      # Development with nodemon
+npm test         # Run tests (to be implemented)
+```
+
+### Frontend
+```bash
+npm run dev      # Development server
+npm run build    # Production build
+npm start        # Production server
+npm run lint     # ESLint checking
+```
+
+##  Support
+
+For any questions or issues, please contact:
+- **Email:** tayyabktk2002@gmail.com
+- **linkdin:** https://www.linkedin.com/in/tayyab-khattak/
+- **Githun:** https://github.com/tayyabktk2002
+
+##  Author
+
+**Tayyab Ur Rehman**  
+Full-Stack Developer  
+- **Email:** tayyabktk2002@gmail.com
+
+##  License
+
+This project is created for interview evaluation purposes and learning.
+
 ---
+Inside the Postman collection folder, you will find the API collection JSON file. You can easily test all APIs by importing it into Postman once the server is running.
 
-## 🧠 Architecture Explanation (Brief)
-
-* **Frontend (Next.js)** handles UI, routing, and API consumption
-* **Backend (Express)** provides REST APIs
-* **MongoDB** stores users & blog data
-* **JWT** secures protected routes
-* **MVC Pattern** used in backend for scalability
-
----
-
-## 🚀 Deployment (Optional)
-
-* Backend can be deployed on **Render / Railway**
-* Frontend can be deployed on **Vercel / Netlify**
-* Environment variables handled securely in hosting platforms
-
----
-
-## 👨‍💻 Author
-
-**Tayyab Ur Rehman**
-Full-Stack Developer
-
----
-
-## 📄 License
-
-This project is created for interview evaluation purposes.
+Thank You So Much. 😊
