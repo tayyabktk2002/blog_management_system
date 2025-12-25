@@ -13,7 +13,7 @@ const decodeHtmlEntities = (html) => {
   return html;
 };
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, onDelete }) => {
   const sanitizeAndDecodeHtml = (html) => {
     if (!html) return '';
     const decoded = decodeHtmlEntities(html);
@@ -64,7 +64,7 @@ const Blog = ({ blog }) => {
         </div>
       </Link>
         {blog.owner && (
-         <ActionBtn blog_id = {blog.id}/>
+         <ActionBtn blog_id={blog.id} onDelete={onDelete}/>
         )}
       </div>
     </article>

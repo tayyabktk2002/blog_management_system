@@ -58,6 +58,13 @@ const Blog = () => {
     }
   };
 
+  const handleDeleteBlog = (deletedBlogId) => {
+    setPosts(prevPosts => ({
+      ...prevPosts,
+      data: prevPosts.data.filter(post => post._id !== deletedBlogId)
+    }));
+  };
+
   const blogs = posts.data.map((post) => ({
     id: post._id,
     title: post.title,
@@ -91,7 +98,7 @@ const Blog = () => {
             </div>
           ) : (
             blogs.map((blog) => (
-                <BlogCom blog={blog} key={blog.id}/>
+                <BlogCom blog={blog} key={blog.id} onDelete={handleDeleteBlog}/>
             ))
           )}
         </div>

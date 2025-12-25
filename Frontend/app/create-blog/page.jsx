@@ -2,6 +2,7 @@
 import Tiptap from "@/components/TIptipEditor";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const page = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const page = () => {
     
     if (!userData || !token) {
       router.push("/login");
+      toast.error("Please login to create a blog");
     }
   }, [router]);
   

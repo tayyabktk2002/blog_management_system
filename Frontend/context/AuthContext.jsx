@@ -73,12 +73,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const removeBlog = async (id) => {
+  const removeBlog = async (id, onSuccess) => {
     try {
       const res = await api.delete(`/post/remove/${id}`);
-      const responsData = res.data.data;
       toast.success("Blog deleted successfully!");
-      return responsData;
+      // Call the callback function to update parent component state
+      if (onSuccess) onSuccess(id);
+      return res.data;
     } catch (err) {
       toast.error(
         err.response?.data?.message ||

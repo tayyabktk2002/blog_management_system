@@ -2,10 +2,10 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import React from "react";
 
-const ActionBtn = ({ blog_id }) => {
+const ActionBtn = ({ blog_id, onDelete }) => {
   const { removeBlog } = useAuth();
   const deleteBlog = async (blog_id) => {
-    await removeBlog(blog_id);
+    await removeBlog(blog_id, onDelete);
   };
   return (
     <div className="flex justify-end flex-row gap-3">
