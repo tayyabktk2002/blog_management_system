@@ -39,12 +39,6 @@ const TiptapEditor = () => {
     extensions: [StarterKit],
     content: "<h2>Your story starts here</h2><p>Write something amazing...</p>",
     immediatelyRender: false,
-    editorProps: {
-      attributes: {
-        class:
-          "prose prose-lg max-w-none focus:outline-none min-h-[300px] prose-headings:font-display prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-blockquote:border-primary prose-blockquote:text-muted-foreground prose-li:text-foreground",
-      },
-    },
   });
 
   const [formData, setFormData] = useState({ title: "" });
@@ -105,7 +99,7 @@ const TiptapEditor = () => {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white p-4 rounded-2xl">
+    <div className="w-full max-w-4xl mx-auto bg-gray-500 p-4 rounded-2xl">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -120,7 +114,7 @@ const TiptapEditor = () => {
           type="button"
           onClick={handlePublish}
           disabled={submitting}
-          className={`bg-primary hover:bg-primary/90 rounded-xl py-3 px-8 text-primary-foreground font-semibold transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 ${
+          className={`bg-primary hover:bg-primary/90 rounded-xl py-3 px-8 text-primary-foreground font-semibold transition-all duration-300 shadow-lg shadow-white hover:shadow-xl hover:shadow-white text-white ${
             submitting ? "opacity-60 cursor-not-allowed" : ""
           }`}
         >
@@ -139,7 +133,7 @@ const TiptapEditor = () => {
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full px-0 py-2 bg-transparent text-3xl font-display font-bold text-foreground placeholder:text-muted-foreground/50 focus:outline-none border-none"
+            className="w-full px-0 py-2 bg-transparent text-3xl font-display font-bold text-foreground placeholder:text-muted-foreground/50 focus:outline-none border-none placeholder:text-white"
           />
         </div>
 

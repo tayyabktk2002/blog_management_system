@@ -28,11 +28,6 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
-::selection {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
 
 * {
   transition: all 0.2s ease-in-out;

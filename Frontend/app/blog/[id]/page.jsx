@@ -4,6 +4,7 @@ import createDOMPurify from "isomorphic-dompurify";
 import { useAuth } from '@/context/AuthContext';
 import { useParams } from 'next/navigation';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { useRouter } from "next/navigation";
 
 const decodeHtmlEntities = (html) => {
   if (!html) return '';
@@ -38,6 +39,7 @@ const BlogDetail = () => {
   const { id } = params;
   const [postDetails, setPostDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
 
   useEffect(() => {
@@ -75,6 +77,7 @@ const BlogDetail = () => {
 
   const deleteBlog = async (blogId) => {
     await removeBlog(blogId);
+    router.push('/blog');
   };
 
   if (loading) {
