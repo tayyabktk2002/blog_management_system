@@ -12,6 +12,8 @@ A modern, full-stack **Blog Management Application** built with **Node.js + Expr
 -  **Modern UI/UX** - Clean and intuitive user interface
 -  **Real-time Updates** - Dynamic content loading and updates
 
+> **Note:** Backend server is live and deployed. You can run just the frontend for testing. Only run the backend locally when you need to test backend functionality.
+
 ##  Project Structure
 
 ```
