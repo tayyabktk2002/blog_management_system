@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://72.60.104.179:5000/api/v1/",
+  baseURL: "https://blog.ahtelecom.cloud/api/v1/",
 });
 
 api.interceptors.request.use((config) => {
